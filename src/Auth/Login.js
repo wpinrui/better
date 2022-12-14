@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { emailBox, passwordBox, loginButton } from "./Auth.js";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword } from "../firebase";
+import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "./Login.css";
-
-function authBox(state, setter, className, placeholder, type = "text") {
-    return (
-        <input
-            type={type}
-            className={className}
-            value={state}
-            onChange={(field) => setter(field.target.value)}
-            placeholder={placeholder}
-        />
-    );
-}
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -29,23 +17,18 @@ function Login() {
             navigate("/dashboard");
         }
     }, [user, loading, navigate]);
+
     return (
-        <div className="login">
-            <div className="login_container">
-                {authBox(email, setEmail, "authBox", "Email Address")}
-                {authBox(
-                    password,
-                    setPassword,
-                    "authBox",
-                    "Password",
-                    "password"
-                )}
-                <button
-                    className="login_btn"
-                    onClick={() => logInWithEmailAndPassword(email, password)}
-                >
-                    Login
-                </button>
+        <div className="auth">
+            <div className="auth_container">
+                {emailBox(email, setEmail)}
+                {passwordBox(password, setPassword)}
+                {loginButton({
+                    email: email,
+                    password: password,
+                    loading: loading,
+                })}
+
                 <div>
                     <Link to="/reset">Forgot Password</Link>
                 </div>
