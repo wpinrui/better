@@ -1,29 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-    emailBox,
-    passwordBox,
-    loginButton,
-    authForm,
-    registerPrompt,
-    logo,
-} from "./Auth.js";
-import { Link, useNavigate } from "react-router-dom";
+import { emailBox, resetButton, backPrompt, authForm, logo } from "./Auth.js";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import "./Auth.css";
-
-const resetPrompt = (
-    <div className="auth-link">
-        <Link to="/reset">
-            <p className="inner-prompt">Forgot password</p>
-        </Link>
-    </div>
-);
-
-function Login() {
+function Reset() {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     useEffect(() => {
@@ -40,17 +22,14 @@ function Login() {
             {authForm([
                 logo,
                 emailBox(email, setEmail),
-                passwordBox(password, setPassword),
-                loginButton({
+                resetButton({
                     email: email,
-                    password: password,
                     loading: loading,
                 }),
-                resetPrompt,
             ])}
-            {registerPrompt}
+            {backPrompt}
         </div>
     );
 }
 
-export default Login;
+export default Reset;

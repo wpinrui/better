@@ -4,8 +4,11 @@ import {
     passwordBox,
     confirmPasswordBox,
     registerButton,
+    authForm,
+    logo,
+    loginPrompt,
 } from "./Auth.js";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -26,23 +29,21 @@ function Register() {
     }, [user, loading, navigate]);
 
     return (
-        <div className="auth">
-            <div className="auth_container">
-                {emailBox(email, setEmail)}
-                {passwordBox(password, setPassword)}
-                {confirmPasswordBox(passwordConfirm, setPasswordConfirm)}
-                {registerButton({
+        <div>
+            {authForm([
+                logo,
+                emailBox(email, setEmail),
+                passwordBox(password, setPassword),
+                confirmPasswordBox(passwordConfirm, setPasswordConfirm),
+                registerButton({
                     email: email,
                     password: password,
                     passwordConfirm: passwordConfirm,
                     loading: loading,
                     isNotMatching: isNotMatching,
-                })}
-
-                <div>
-                    Already have an account? <Link to="/">Log in</Link> now.
-                </div>
-            </div>
+                }),
+            ])}
+            {loginPrompt}
         </div>
     );
 }
