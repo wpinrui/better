@@ -1,4 +1,7 @@
-import { logInWithEmailAndPassword } from "../firebase";
+import {
+    logInWithEmailAndPassword,
+    registerWithEmailAndPassword,
+} from "../firebase";
 
 function authBox(state, setter, className, placeholder, type = "text") {
     return (
@@ -24,6 +27,9 @@ export const emailBox = (state, setter) =>
 export const passwordBox = (state, setter) =>
     authBox(state, setter, "authBox", "Password", "password");
 
+export const confirmPasswordBox = (state, setter) =>
+    authBox(state, setter, "authBox", "Re-enter password", "password");
+
 export const loginButton = (inputObj) =>
     authButton(
         () => {
@@ -33,4 +39,20 @@ export const loginButton = (inputObj) =>
         },
         "Login",
         "login_btn"
+    );
+
+export const registerButton = (inputObj) =>
+    authButton(
+        () => {
+            if (inputObj.password !== inputObj.passwordConfirm) {
+                inputObj.isNotMatching = true;
+                console.log("isNotMatching");
+            } else if (!inputObj.loading) {
+                inputObj.isNotMatching = false;
+                console.log("isMatching");
+                registerWithEmailAndPassword(inputObj.email, inputObj.password);
+            }
+        },
+        "Register",
+        "register_btn"
     );

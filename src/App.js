@@ -1,5 +1,6 @@
 import "./App.css";
 import Login from "./Auth/Login.js";
+import Register from "./Auth/Register.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const appDiv = (
@@ -7,6 +8,7 @@ const appDiv = (
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </Router>
     </div>
