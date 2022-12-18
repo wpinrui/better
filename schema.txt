@@ -1,0 +1,17 @@
+Schema
+
+USERS
+	authProvider
+	email
+	uid
+
+GOALS
+	uid
+	goalId
+	short_description
+      description
+
+VALUES
+	uid
+	goalId
+	date

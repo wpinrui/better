@@ -1,13 +1,22 @@
 import {
+    auth,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
     sendPasswordReset,
 } from "../firebase";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
+import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { enumerateComponentArray } from "../Utilities";
+import {
+    PATH_DASHBOARD,
+    PATH_LOGIN,
+    PATH_REGISTER,
+    PATH_RESET,
+} from "../Paths";
 
-function authBox(state, setter, id, placeholder, type = "text") {
+function AuthBox(state, setter, id, placeholder, type = "text") {
     return (
         <div className="form-group">
             <input
@@ -22,77 +31,132 @@ function authBox(state, setter, id, placeholder, type = "text") {
     );
 }
 
-const authButton = (action, label, className) => (
-    <button className={className} onClick={action}>
+const AuthButton = (enabled, action, label, className) => (
+    <button className={className} onClick={action} disabled={!enabled}>
         {label}
     </button>
 );
 
-export const emailBox = (state, setter) =>
-    authBox(state, setter, "auth_email", "Email Address", "email");
+export const useEmailBox = () => {
+    const [email, setEmail] = useState("");
+    const emailBox = AuthBox(
+        email,
+        setEmail,
+        "email",
+        "Email Address",
+        "email"
+    );
+    return [email, setEmail, emailBox];
+};
 
-export const passwordBox = (state, setter) =>
-    authBox(state, setter, "auth_password", "Password", "password");
+export const usePasswordBox = () => {
+    const [password, setPassword] = useState("");
+    const passwordBox = AuthBox(
+        password,
+        setPassword,
+        "password",
+        "Password",
+        "password"
+    );
+    return [password, setPassword, passwordBox];
+};
 
-export const confirmPasswordBox = (state, setter) =>
-    authBox(
-        state,
-        setter,
-        "auth_password_cfm",
+export const usePasswordConfirmBox = () => {
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const passwordConfirmBox = AuthBox(
+        passwordConfirm,
+        setPasswordConfirm,
+        "passwordConfirm",
         "Re-enter password",
         "password"
     );
+    return [passwordConfirm, setPasswordConfirm, passwordConfirmBox];
+};
 
-export const loginButton = (inputObj) =>
-    authButton(
+export const useLogin = (email, password) => {
+    const [user, loading, _] = useAuthState(auth);
+    const [error, setError] = useState("");
+    const button = AuthButton(
+        !loading,
         () => {
-            if (!inputObj.loading) {
-                logInWithEmailAndPassword(inputObj.email, inputObj.password);
+            if (!loading) {
+                logInWithEmailAndPassword(email, password).catch((e) =>
+                    setError(e)
+                );
             }
         },
         "Login",
         "btn btn-primary"
     );
+    return [error, setError, button];
+};
 
-export const registerButton = (inputObj) =>
-    authButton(
+export const useRegister = (email, password, passwordConfirm) => {
+    const [user, loading, _] = useAuthState(auth);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const button = AuthButton(
+        !loading,
         () => {
-            if (inputObj.password !== inputObj.passwordConfirm) {
-                inputObj.isNotMatching = true;
-            } else if (!inputObj.loading) {
-                inputObj.isNotMatching = false;
-                registerWithEmailAndPassword(inputObj.email, inputObj.password);
+            if (!loading && password === passwordConfirm) {
+                setError("");
+                registerWithEmailAndPassword(email, password).then(
+                    (resolve) => {
+                        navigate(PATH_DASHBOARD);
+                    },
+                    (e) => setError(e)
+                );
+            }
+            if (password !== passwordConfirm) {
+                setError("Passwords do not match.");
             }
         },
         "Register",
         "btn btn-primary"
     );
+    return [error, setError, button];
+};
 
-export const resetButton = (inputObj) =>
-    authButton(
+export const useReset = (email) => {
+    const [user, loading, _] = useAuthState(auth);
+    const [error, setError] = useState("");
+    const [sent, setSent] = useState(false);
+    const button = AuthButton(
+        !loading && !sent,
         () => {
-            if (!inputObj.loading) {
-                sendPasswordReset(inputObj.email);
-                inputObj.disabledSetter(true);
+            if (!loading) {
+                sendPasswordReset(email).then(
+                    (resolve) => {
+                        setSent(true);
+                        setError("Password reset email sent successfully.");
+                    },
+                    (e) => setError(e)
+                );
             }
         },
         "Send reset email",
         "btn btn-primary"
     );
+    return [error, setError, button];
+};
 
-export const logo = (
+export const Logo = (
     <div className="logo">
         <img className="logo_image" src="/placeholder.png" alt="logo" />
         <span className="logo_text">better</span>
     </div>
 );
 
-export const authForm = (itemsArray) => {
+export const AuthForm = (itemsArray) => {
     return (
         <div className="container">
             <div className="row justify-content-center">
                 <div className="auth_container col-sm-6">
-                    <div>{itemsArray.map((element, _) => element)}</div>
+                    <div>
+                        {enumerateComponentArray(itemsArray).map(
+                            (element, _) => element.data
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,18 +177,20 @@ export const outerPrompt = (prefix, link, suffix, location) => {
     );
 };
 
-export const registerPrompt = outerPrompt(
+export const ResetPrompt = outerPrompt("", "Forgot password", "", PATH_RESET);
+
+export const RegisterPrompt = outerPrompt(
     "Don't have an account? Sign up ",
     "here",
     ".",
-    "/register"
+    PATH_REGISTER
 );
 
-export const loginPrompt = outerPrompt(
+export const LoginPrompt = outerPrompt(
     "Already have an account? Log in ",
     "here",
     ".",
-    "/"
+    PATH_LOGIN
 );
 
-export const backPrompt = outerPrompt("", "Back to login", "", "/");
+export const BackPrompt = outerPrompt("", "Back to login", "", "/");
