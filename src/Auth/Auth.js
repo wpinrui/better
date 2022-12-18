@@ -6,7 +6,7 @@ import {
 } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { enumerateComponentArray } from "../Utilities";
 import {
@@ -153,8 +153,8 @@ export const AuthForm = (itemsArray) => {
             <div className="row justify-content-center">
                 <div className="auth_container col-sm-6">
                     <div>
-                        {enumerateComponentArray(itemsArray).map(
-                            (element, _) => element.data
+                        {itemsArray.map((element, index) =>
+                            React.cloneElement(element, { key: index })
                         )}
                     </div>
                 </div>
