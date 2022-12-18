@@ -15,3 +15,6 @@ Set goals. Track growth. Be better.
 - [ ] Monthly recap
 - [ ] Statistics page
 - [ ] Awards
+
+## Attribution
+1. [Hexagon icon created by Freepik - Flaticon](https://www.flaticon.com/free-icons/hexagon)
