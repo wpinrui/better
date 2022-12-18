@@ -3,7 +3,6 @@ import {
     useEmailBox,
     AuthForm,
     RegisterPrompt,
-    Logo,
     usePasswordBox,
     useLogin,
     ResetPrompt,
@@ -11,6 +10,7 @@ import {
 
 import { useAuthenticatedRedirect } from "../Redirect/Redirect.js";
 import { CustomAlert } from "../Frontend/Alert.js";
+import { Logo } from "../Frontend/Logo.js";
 
 function Login() {
     useAuthenticatedRedirect();

@@ -26,12 +26,17 @@
      */
 }
 
+.auth-button {
+    padding: 0.5rem 2rem;
+}
+
 .form-control {
     margin: 1rem 0;
 }
 
 .logo {
     margin-top: 3rem;
+    margin-bottom: 1rem;
     display: inline-flex;
     width: 100%;
     justify-content: center;
