@@ -5,6 +5,10 @@ Set goals. Track growth. Be better.
 - [x] Authentication
 - [x] Database schema
 - [x] Homepage skeleton layout
+- [ ] Add goals card
+- [ ] 7-day summary card
+- [ ] Daily card
+- [ ] Implement card sorter logic
 - [ ] Spider chart for data visualisation
 - [ ] Data upload page
 - [ ] Goal setting page
