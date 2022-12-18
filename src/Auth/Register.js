@@ -22,7 +22,8 @@ function Register() {
     );
     return (
         <div>
-            {error && CustomAlert(error, "alert-warning")}
+            {error &&
+                CustomAlert({ alertType: "alert-warning", message: error })}
             {AuthForm([
                 Logo,
                 EmailBox,

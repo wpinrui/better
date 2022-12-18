@@ -19,7 +19,8 @@ function Login() {
     const [error, setError, button] = useLogin(email, password);
     return (
         <div>
-            {error && CustomAlert(error, "alert-warning")}
+            {error &&
+                CustomAlert({ alertType: "alert-warning", message: error })}
             {AuthForm([Logo, EmailBox, PasswordBox, button])}
             {ResetPrompt}
             {RegisterPrompt}
