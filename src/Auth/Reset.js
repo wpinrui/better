@@ -6,7 +6,8 @@ function Reset() {
     const [error, setError, button] = useReset(email);
     return (
         <div>
-            {error && CustomAlert(error, "alert-primary")}
+            {error &&
+                CustomAlert({ alertType: "alert-warning", message: error })}
             {AuthForm([Logo, EmailBox, button])}
             {BackPrompt}
         </div>
