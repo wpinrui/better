@@ -8,7 +8,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { enumerateComponentArray } from "../Utilities";
 import {
     PATH_DASHBOARD,
     PATH_LOGIN,
@@ -86,7 +85,7 @@ export const useLogin = (email, password) => {
             }
         },
         "Login",
-        "btn btn-primary"
+        "btn btn-primary auth-button"
     );
     return [error, setError, button];
 };
@@ -112,7 +111,7 @@ export const useRegister = (email, password, passwordConfirm) => {
             }
         },
         "Register",
-        "btn btn-primary"
+        "btn btn-primary auth-button"
     );
     return [error, setError, button];
 };
@@ -135,23 +134,16 @@ export const useReset = (email) => {
             }
         },
         "Send reset email",
-        "btn btn-primary"
+        "btn btn-primary auth-button"
     );
     return [error, setError, button];
 };
 
-export const Logo = (
-    <div className="logo">
-        <img className="logo_image" src="/placeholder.png" alt="logo" />
-        <span className="logo_text">better</span>
-    </div>
-);
-
 export const AuthForm = (itemsArray) => {
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row justify-content-center">
-                <div className="auth_container col-sm-6">
+                <div className="auth_container col-10 col-md-6 col-lg-4">
                     <div>
                         {itemsArray.map((element, index) =>
                             React.cloneElement(element, { key: index })

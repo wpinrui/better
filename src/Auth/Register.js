@@ -3,12 +3,12 @@ import { CustomAlert } from "../Frontend/Alert.js";
 import {
     useEmailBox,
     AuthForm,
-    Logo,
     usePasswordBox,
     usePasswordConfirmBox,
     useRegister,
     LoginPrompt,
 } from "./Auth.js";
+import { Logo } from "../Frontend/Logo.js";
 
 function Register() {
     const [email, setEmail, EmailBox] = useEmailBox();

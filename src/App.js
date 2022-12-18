@@ -9,6 +9,7 @@ import {
     PATH_RESET,
 } from "./Paths.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Dashboard from "./Dashboard/Dashboard";
 
 const appDiv = (
     <div className="App">
@@ -17,6 +18,7 @@ const appDiv = (
                 <Route path={PATH_LOGIN} element={<Login />} />
                 <Route path={PATH_REGISTER} element={<Register />} />
                 <Route path={PATH_RESET} element={<Reset />} />
+                <Route path={PATH_DASHBOARD} element={<Dashboard />} />
             </Routes>
         </Router>
     </div>
