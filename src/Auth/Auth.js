@@ -140,13 +140,6 @@ export const useReset = (email) => {
     return [error, setError, button];
 };
 
-export const Logo = (
-    <div className="logo">
-        <img className="logo_image" src="/placeholder.png" alt="logo" />
-        <span className="logo_text">better</span>
-    </div>
-);
-
 export const AuthForm = (itemsArray) => {
     return (
         <div className="container">
