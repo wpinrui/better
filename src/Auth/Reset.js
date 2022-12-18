@@ -1,33 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { emailBox, resetButton, backPrompt, authForm, logo } from "./Auth.js";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { CustomAlert } from "../Frontend/Alert";
+import { AuthForm, BackPrompt, Logo, useEmailBox, useReset } from "./Auth";
 
 function Reset() {
-    const [email, setEmail] = useState("");
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (loading) {
-            return;
-        }
-        if (user) {
-            navigate("/dashboard");
-        }
-    }, [user, loading, navigate]);
-
+    const [email, setEmail, EmailBox] = useEmailBox();
+    const [error, setError, button] = useReset(email);
     return (
         <div>
-            {authForm([
-                logo,
-                emailBox(email, setEmail),
-                resetButton({
-                    email: email,
-                    loading: loading,
-                }),
-            ])}
-            {backPrompt}
+            {error && CustomAlert(error, "alert-primary")}
+            {AuthForm([Logo, EmailBox, button])}
+            {BackPrompt}
         </div>
     );
 }

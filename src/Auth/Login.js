@@ -1,54 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
-    emailBox,
-    passwordBox,
-    loginButton,
-    authForm,
-    registerPrompt,
-    logo,
+    useEmailBox,
+    AuthForm,
+    RegisterPrompt,
+    Logo,
+    usePasswordBox,
+    useLogin,
+    ResetPrompt,
 } from "./Auth.js";
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 
-import "./Auth.css";
-
-const resetPrompt = (
-    <div className="auth-link">
-        <Link to="/reset">
-            <p className="inner-prompt">Forgot password</p>
-        </Link>
-    </div>
-);
+import { useAuthenticatedRedirect } from "../Redirect/Redirect.js";
+import { CustomAlert } from "../Frontend/Alert.js";
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (loading) {
-            return;
-        }
-        if (user) {
-            navigate("/dashboard");
-        }
-    }, [user, loading, navigate]);
-
+    useAuthenticatedRedirect();
+    const [email, setEmail, EmailBox] = useEmailBox();
+    const [password, setPassword, PasswordBox] = usePasswordBox();
+    const [error, setError, button] = useLogin(email, password);
     return (
         <div>
-            {authForm([
-                logo,
-                emailBox(email, setEmail),
-                passwordBox(password, setPassword),
-                loginButton({
-                    email: email,
-                    password: password,
-                    loading: loading,
-                }),
-                resetPrompt,
-            ])}
-            {registerPrompt}
+            {error && CustomAlert(error, "alert-warning")}
+            {AuthForm([Logo, EmailBox, PasswordBox, button])}
+            {ResetPrompt}
+            {RegisterPrompt}
         </div>
     );
 }
