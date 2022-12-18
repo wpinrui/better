@@ -5,6 +5,8 @@ Set goals. Track growth. Be better.
 - [x] Authentication
 - [x] Database schema
 - [x] Homepage skeleton layout
+- [ ] Add first name
+- [ ] Add greeting card
 - [ ] Add attribution card
 - [ ] Add goals card
 - [ ] Add suggestions card
