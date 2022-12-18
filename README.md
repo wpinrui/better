@@ -6,6 +6,7 @@ Set goals. Track growth. Be better.
 - [x] Database schema
 - [x] Homepage skeleton layout
 - [ ] Add goals card
+- [ ] Add suggestions card
 - [ ] 7-day summary card
 - [ ] Daily card
 - [ ] Implement card sorter logic
