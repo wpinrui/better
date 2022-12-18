@@ -1,7 +1,7 @@
-# better
+# better :fire:
 Set goals. Track growth. Be better.
 
-# Completion roadmap for Minimum Viable Product
+### Completion roadmap for Minimum Viable Product :iphone:
 - [x] Authentication
 - [x] Database schema
 - [ ] Homepage skeleton layout
@@ -11,7 +11,7 @@ Set goals. Track growth. Be better.
 - [ ] History page
 - [ ] Settings page
 
-# Next features
+### Next features :100:
 - [ ] Monthly recap
 - [ ] Statistics page
 - [ ] Awards
