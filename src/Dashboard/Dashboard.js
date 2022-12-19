@@ -21,12 +21,14 @@ function useUpdateStreak() {
                 updateFirestoreData(DB_USERS, user.uid, {
                     lastLogin: today(),
                     loginStreak: data.loginStreak + 1,
+                    daysLoggedIn: data.daysLoggedIn + 1,
                 });
             } else {
                 data.loginStreak = 1;
                 updateFirestoreData(DB_USERS, user.uid, {
                     lastLogin: today(),
                     loginStreak: 1,
+                    daysLoggedIn: data.daysLoggedIn + 1,
                 });
             }
         }
