@@ -1,7 +1,8 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
+import { isToday, isYesterday, today } from "../Utilities/Dates";
 import { DB_USERS } from "./FirestoreNavigation";
 
 async function getFirestoreData(documentName, uid) {
@@ -17,7 +18,12 @@ async function getFirestoreData(documentName, uid) {
     }
 }
 
-function FirestoreData(documentName) {
+export async function updateFirestoreData(documentName, uid, fieldsObject) {
+    const docRef = doc(db, documentName, uid);
+    await updateDoc(docRef, fieldsObject);
+}
+
+export function FirestoreData(documentName) {
     const [user] = useAuthState(auth);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState("");
@@ -27,11 +33,11 @@ function FirestoreData(documentName) {
                 .then((data) => setData(data))
                 .then((resolve) => setLoading(false));
         }
-    }, [user, documentName]);
+    }, [user]);
     return [loading, data];
 }
 
-export function Name() {
+export function UserData() {
     const [loading, data] = FirestoreData(DB_USERS);
-    return [loading, data.name];
+    return [loading, data];
 }
