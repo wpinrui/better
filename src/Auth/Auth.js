@@ -8,7 +8,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { enumerateComponentArray } from "../Utilities";
 import {
     PATH_DASHBOARD,
     PATH_LOGIN,
