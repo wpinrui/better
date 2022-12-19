@@ -1,9 +1,9 @@
 Schema
 
 USERS
-	authProvider
-	email
+	name
 	uid
+	email
 
 GOALS
 	uid

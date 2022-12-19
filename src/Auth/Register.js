@@ -7,15 +7,18 @@ import {
     usePasswordConfirmBox,
     useRegister,
     LoginPrompt,
+    useNameBox,
 } from "./Auth.js";
 import { Logo } from "../Frontend/Logo.js";
 
 function Register() {
+    const [name, setName, NameBox] = useNameBox();
     const [email, setEmail, EmailBox] = useEmailBox();
     const [password, setPassword, PasswordBox] = usePasswordBox();
     const [passwordConfirm, setPasswordConfirm, PasswordConfirmBox] =
         usePasswordConfirmBox();
     const [error, setError, button] = useRegister(
+        name,
         email,
         password,
         passwordConfirm
@@ -26,6 +29,7 @@ function Register() {
                 CustomAlert({ alertType: "alert-warning", message: error })}
             {AuthForm([
                 Logo,
+                NameBox,
                 EmailBox,
                 PasswordBox,
                 PasswordConfirmBox,

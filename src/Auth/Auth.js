@@ -36,41 +36,17 @@ const AuthButton = (enabled, action, label, className) => (
     </button>
 );
 
-export const useEmailBox = () => {
-    const [email, setEmail] = useState("");
-    const emailBox = AuthBox(
-        email,
-        setEmail,
-        "email",
-        "Email Address",
-        "email"
-    );
-    return [email, setEmail, emailBox];
+const useBox = (id, placeholder, type, init = "") => {
+    const [state, setter] = useState(init);
+    const box = AuthBox(state, setter, id, placeholder, type);
+    return [state, setter, box];
 };
 
-export const usePasswordBox = () => {
-    const [password, setPassword] = useState("");
-    const passwordBox = AuthBox(
-        password,
-        setPassword,
-        "password",
-        "Password",
-        "password"
-    );
-    return [password, setPassword, passwordBox];
-};
-
-export const usePasswordConfirmBox = () => {
-    const [passwordConfirm, setPasswordConfirm] = useState("");
-    const passwordConfirmBox = AuthBox(
-        passwordConfirm,
-        setPasswordConfirm,
-        "passwordConfirm",
-        "Re-enter password",
-        "password"
-    );
-    return [passwordConfirm, setPasswordConfirm, passwordConfirmBox];
-};
+export const useNameBox = () => useBox("name", "What's your name?", "text");
+export const useEmailBox = () => useBox("email", "Email Address", "email");
+export const usePasswordBox = () => useBox("password", "Password", "password");
+export const usePasswordConfirmBox = () =>
+    useBox("passwordConfirm", "Re-enter password", "password");
 
 export const useLogin = (email, password) => {
     const [user, loading, _] = useAuthState(auth);
@@ -90,7 +66,7 @@ export const useLogin = (email, password) => {
     return [error, setError, button];
 };
 
-export const useRegister = (email, password, passwordConfirm) => {
+export const useRegister = (name, email, password, passwordConfirm) => {
     const [user, loading, _] = useAuthState(auth);
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -99,7 +75,7 @@ export const useRegister = (email, password, passwordConfirm) => {
         () => {
             if (!loading && password === passwordConfirm) {
                 setError("");
-                registerWithEmailAndPassword(email, password).then(
+                registerWithEmailAndPassword(name, email, password).then(
                     (resolve) => {
                         navigate(PATH_DASHBOARD);
                     },
