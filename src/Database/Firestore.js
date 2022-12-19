@@ -1,8 +1,7 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
-import { isToday, isYesterday, today } from "../Utilities/Dates";
 import { DB_USERS } from "./FirestoreNavigation";
 
 async function getFirestoreData(documentName, uid) {
