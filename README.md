@@ -27,3 +27,4 @@ Set goals. Track growth. Be better.
 
 ## Attribution
 1. [Hexagon icon created by Freepik - Flaticon](https://www.flaticon.com/free-icons/hexagon)
+2. Excellent pure CSS loading spinner <span><img src="Loading.svg" width="32" height="32" alt="css-spinner"></span> adapted from [https://loading.io/css/](https://loading.io/css/)
