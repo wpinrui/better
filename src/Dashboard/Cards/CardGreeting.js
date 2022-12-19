@@ -4,15 +4,11 @@ import { logout } from "../../firebase";
 import { Loading } from "../../Frontend/Loading";
 import { Card } from "./Card.js";
 
-export default function CardGreeting() {
-    const [loading, userData] = UserData();
-
-    if (loading) {
-        return Card({
-            title: "",
-            content: Loading(),
-        });
+export default function CardGreeting(props) {
+    if (props.loading) {
+        return Card(props);
     }
+    const userData = props.userData;
     const streakGreeting = (
         <p>
             {`You've logged in ${userData.loginStreak} days in a row. Keep it
