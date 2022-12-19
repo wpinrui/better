@@ -2,7 +2,7 @@
 Set goals. Track growth. Be better.
 
 ## About
-better is a web application bootstrapped using Create React App. It uses Bootstrap 5.2 for styling and Firebase for data storage and authentication. It is inspired by Apple's Fitness application on the iPhone. With better, users can set lifestyle goals and track their ability to meet these goals over days, weeks and months through easy-to-read radar charts, and get inspired to keep working to these goals. The user interface is designed to be mobile-first but desktop-responsive. 
+better is a web application bootstrapped using Create React App. It uses Bootstrap 5.2 for styling and Firebase for data storage and authentication. It is inspired by Apple's Fitness application on the iPhone. With better, users can set lifestyle goals and track their ability to meet these goals over days, weeks and months through easy-to-read radar charts, and get inspired to keep working towards these goals. The user interface is designed to be mobile-first but desktop-responsive. 
 
 ## Development
 
