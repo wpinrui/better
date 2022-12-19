@@ -4,8 +4,8 @@ import CardSignOut from "./CardSignOut";
 
 const CARD_MAKERS = [CardGreeting, CardSignOut];
 
-export function getAllCards() {
+export function GetAllCards(props) {
     return CARD_MAKERS.map((maker, index) =>
-        React.cloneElement(maker(), { key: index })
+        React.cloneElement(maker(props), { key: index })
     );
 }
