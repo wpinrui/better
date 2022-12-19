@@ -7,6 +7,7 @@ Set goals. Track growth. Be better.
 - [x] Homepage skeleton layout
 - [x] Add first name
 - [ ] Add greeting card
+- [ ] Add login streak / total logins
 - [ ] Add attribution card
 - [ ] Add goals card
 - [ ] Add suggestions card
