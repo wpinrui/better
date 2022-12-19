@@ -18,7 +18,7 @@ function Dashboard() {
         return (
             <div>
                 {Logo}
-                <div className="container-fluid px-md-5">
+                <div className="container-fluid dashboard">
                     <div className="row justify-content-center">
                         {GetAllCards(data)}
                     </div>
@@ -29,7 +29,7 @@ function Dashboard() {
     return (
         <div>
             {Logo}
-            <div className="container-fluid px-md-5">
+            <div className="container-fluid dashboard">
                 <div className="row justify-content-center">
                     {GetAllCards({ loading: true })}
                 </div>

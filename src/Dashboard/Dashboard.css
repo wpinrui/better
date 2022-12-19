@@ -4,6 +4,12 @@
     border: 0;
 }
 
+@media screen and (min-width: 992px) {
+    .dashboard {
+        padding: 1rem 15vw;
+    }
+}
+
 .App {
     min-height: 100vh;
     background-color: #eee;
