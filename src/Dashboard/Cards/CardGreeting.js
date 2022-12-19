@@ -1,21 +1,35 @@
 import React from "react";
-import { getName, Name } from "../../Database/Firestore";
+import { getName, UserData } from "../../Database/Firestore";
 import { logout } from "../../firebase";
 import { Loading } from "../../Frontend/Loading";
 import { Card } from "./Card.js";
 
-const cardContent = <div className="d-grid gap-2">Have a fabulous day!</div>;
-
 export default function CardGreeting() {
-    const [loading, name] = Name();
+    const [loading, userData] = UserData();
+
     if (loading) {
         return Card({
             title: "",
             content: Loading(),
         });
     }
+    const streakGreeting = (
+        <p>
+            {`You've logged in ${userData.loginStreak} days in a row. Keep it
+            going!`}
+        </p>
+    );
+    const streakEncouragemnt = (
+        <p>{`You don't have a login streak yet. Try to login tomorrow, and get a streak started 😊`}</p>
+    );
+    const cardContent = (
+        <div className="d-grid gap-2">
+            {`Welcome back!`}
+            {userData.loginStreak > 1 ? streakGreeting : streakEncouragemnt}
+        </div>
+    );
     return Card({
-        title: `Hello, ${name}!`,
+        title: `Hello, ${userData.name}!`,
         content: cardContent,
     });
 }

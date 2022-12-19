@@ -53,6 +53,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
             name: name,
             uid: user.uid,
             email,
+            loginStreak: 1,
+            lastLogin: new Date().toLocaleDateString(),
         });
         await setDoc(doc(db, "goals", user.uid), {
             goalArray: [],

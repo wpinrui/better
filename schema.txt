@@ -4,14 +4,17 @@ USERS
 	name
 	uid
 	email
+      loginStreak
+      lastLogin
 
 GOALS
-	uid
-	goalId
-	short_description
-      description
+      goalArray
+	    goalId
+	    shortDescription
+          description
 
-VALUES
-	uid
-	goalId
-	date
+DATA
+	dataArray
+	    goalId
+          value
+	    date
