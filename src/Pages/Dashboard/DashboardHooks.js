@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { FirestoreData, updateFirestoreData } from "../Database/Firestore";
-import { DB_DATA, DB_GOALS, DB_USERS } from "../Database/FirestoreNavigation";
-import { auth } from "../firebase";
-import { isToday, isYesterday, today } from "../Utilities/Dates";
+import { FirestoreData, updateFirestoreData } from "../../Database/Firestore";
+import {
+    DB_DATA,
+    DB_GOALS,
+    DB_USERS,
+} from "../../Database/FirestoreNavigation";
+import { auth } from "../../firebase";
+import { isToday, isYesterday, today } from "../../Utilities/Dates";
 
 export function useUpdateStreak() {
     const [user] = useAuthState(auth);

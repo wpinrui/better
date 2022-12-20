@@ -1,5 +1,5 @@
 import React from "react";
-import { logout } from "../../firebase";
+import { logout } from "../../../firebase";
 import { Card } from "./Card.js";
 
 const cardContent = (

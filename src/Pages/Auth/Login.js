@@ -8,9 +8,9 @@ import {
     ResetPrompt,
 } from "./Auth.js";
 
-import { useAuthenticatedRedirect } from "../Redirect/Redirect.js";
-import { CustomAlert } from "../Frontend/Alert.js";
-import { Logo } from "../Frontend/Logo.js";
+import { useAuthenticatedRedirect } from "../../Redirect/Redirect.js";
+import { CustomAlert } from "../../Frontend/Alert.js";
+import { Logo } from "../../Frontend/Logo.js";
 
 function Login() {
     useAuthenticatedRedirect();
@@ -21,7 +21,7 @@ function Login() {
         <div>
             {error &&
                 CustomAlert({ alertType: "alert-warning", message: error })}
-            {AuthForm([Logo, EmailBox, PasswordBox, button])}
+            {AuthForm([EmailBox, PasswordBox, button])}
             {ResetPrompt}
             {RegisterPrompt}
         </div>

@@ -1,4 +1,4 @@
-import { Loading } from "../../Frontend/Loading";
+import { Loading } from "../../../Frontend/Loading";
 import "./Card.css";
 
 export function Card(props) {

@@ -17,7 +17,8 @@ better is a web application bootstrapped using Create React App. It uses Bootstr
 -   [x] Add greeting card
 -   [x] Add login streak / days logged in
 -   [x] Add attribution card
--   [ ] Add goals card
+-   [x] Add goals card
+-   [ ] Add edit goals page
 -   [ ] Add suggestions card
 -   [ ] 7-day summary card
 -   [ ] Daily card

@@ -3,7 +3,7 @@ import {
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
     sendPasswordReset,
-} from "../firebase";
+} from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ import {
     PATH_LOGIN,
     PATH_REGISTER,
     PATH_RESET,
-} from "../Paths";
+} from "../../Paths";
 
 function AuthBox(state, setter, id, placeholder, type = "text") {
     return (

@@ -1,7 +1,4 @@
 import React from "react";
-import { getName, UserData } from "../../Database/Firestore";
-import { logout } from "../../firebase";
-import { Loading } from "../../Frontend/Loading";
 import { Card } from "./Card.js";
 
 export default function CardGreeting(props) {

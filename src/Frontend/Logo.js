@@ -4,3 +4,5 @@ export const Logo = (
         <span className="logo_text">better</span>
     </div>
 );
+
+export default Logo;

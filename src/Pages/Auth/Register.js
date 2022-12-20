@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomAlert } from "../Frontend/Alert.js";
+import { CustomAlert } from "../../Frontend/Alert.js";
 import {
     useEmailBox,
     AuthForm,
@@ -9,7 +9,7 @@ import {
     LoginPrompt,
     useNameBox,
 } from "./Auth.js";
-import { Logo } from "../Frontend/Logo.js";
+import { Logo } from "../../Frontend/Logo.js";
 
 function Register() {
     const [name, setName, NameBox] = useNameBox();
@@ -28,7 +28,6 @@ function Register() {
             {error &&
                 CustomAlert({ alertType: "alert-warning", message: error })}
             {AuthForm([
-                Logo,
                 NameBox,
                 EmailBox,
                 PasswordBox,
